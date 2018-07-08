@@ -10,7 +10,8 @@ def index():
 @app.route('/callback', methods=['POST'])
 def callback():
   message = request.get()
-  index(message+"finish") 
+  text = message+"finish"
+  index() 
   return '',200
 
 if __name__=="__main__":
