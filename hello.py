@@ -1,6 +1,6 @@
 from flask import Flask, request
 import requests
-import pythainlp
+from pythainlp import word_tokenize, pos_tag
 text = "hello world"
 app = Flask(__name__)
 @app.route('/')
