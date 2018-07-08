@@ -7,12 +7,12 @@ def index():
   return text
 
 # ส่วน callback สำหรับ Webhook
-@app.route('/callback', methods=['POST'])
+@app.route('/callback', methods=['POST','GET','DELETE'])
 def callback():
   #message = request.get()
   #text = message+"finish"
   index() 
-  return "finish"
+  return 'finish'
 
 if __name__=="__main__":
     app.run()
