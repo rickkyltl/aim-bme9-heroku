@@ -3,7 +3,7 @@ import requests
 text = "hello world"
 app = Flask(__name__)
 @app.route('/')
-def index(text):
+def index():
   return text
 
 # ส่วน callback สำหรับ Webhook
