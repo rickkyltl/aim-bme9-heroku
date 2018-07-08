@@ -1,5 +1,6 @@
 from flask import Flask, request
 import requests
+import pythainlp
 text = "hello world"
 app = Flask(__name__)
 @app.route('/')
@@ -11,8 +12,10 @@ def index():
 def callback():
   message = request.form.get("data")
   #text = message+"finish"
+  proc = word_tokenize(message, engine = 'newmm')
+  tag = pos_tag(proc,engine='old')
   index() 
-  return 'finish'
+  return tag
 
 if __name__=="__main__":
     app.run()
