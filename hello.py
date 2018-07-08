@@ -9,8 +9,8 @@ def index():
 # ส่วน callback สำหรับ Webhook
 @app.route('/callback', methods=['POST'])
 def callback():
-  message = request.get()
-  text = message+"finish"
+  #message = request.get()
+  #text = message+"finish"
   index() 
   return "finish"
 
