@@ -12,7 +12,7 @@ def callback():
   message = request.get()
   text = message+"finish"
   index() 
-  return '',200
+  return "finish"
 
 if __name__=="__main__":
     app.run()
