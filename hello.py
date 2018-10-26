@@ -15,7 +15,7 @@ def callback():
   proc = word_tokenize(message, engine = 'newmm')
   tag = pos_tag(proc,engine='old')
   index() 
-  return tag
+  return message
 
 if __name__=="__main__":
     app.run()
