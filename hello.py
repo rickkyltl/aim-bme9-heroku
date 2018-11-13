@@ -1,6 +1,8 @@
 from flask import Flask, request
 import requests
 from pythainlp import word_tokenize, pos_tag
+import speech_recognition as sr
+
 text = "hello world"
 app = Flask(__name__)
 @app.route('/')
@@ -11,7 +13,13 @@ def index():
 @app.route('/callback', methods=['POST','GET','DELETE'])
 def callback():
   message = request.form.get("data")
-  return message
+  r = sr.Recognizer()
+  try:
+        text = r.recognize_google(audio,language = "th-TH")
+        print("You said " + text) # แสดงข้อความจากเสียงด้วย Google Speech Recognition และกำหนดค่าภาษาเป็นภาษาไทย
+  except sr.UnknownValueError:# ประมวลผลแล้วไม่รู้จักหรือเข้าใจเสียง
+        text = "no word"
+  return text
 
 if __name__=="__main__":
     app.run()
