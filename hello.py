@@ -11,10 +11,6 @@ def index():
 @app.route('/callback', methods=['POST','GET','DELETE'])
 def callback():
   message = request.form.get("data")
-  #text = message+"finish"
-  proc = word_tokenize(message, engine = 'newmm')
-  tag = pos_tag(proc,engine='old')
-  index() 
   return message
 
 if __name__=="__main__":
