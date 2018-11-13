@@ -12,7 +12,7 @@ def index():
 # ส่วน callback สำหรับ Webhook
 @app.route('/callback', methods=['POST','GET','DELETE'])
 def callback():
-  message = request.form.get("data")
+  audio = request.form.get("data")
   r = sr.Recognizer()
   try:
         text = r.recognize_google(audio,language = "th-TH")
