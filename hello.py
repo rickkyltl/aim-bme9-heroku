@@ -12,14 +12,16 @@ def index():
 # ส่วน callback สำหรับ Webhook
 @app.route('/callback', methods=['POST','GET','DELETE'])
 def callback():
-  audio = request.form.get("data")
+  audio = request.files['file']
   r = sr.Recognizer()
-  try:
-        text = r.recognize_google(audio,language = "th-TH")
-        print("You said " + text) # แสดงข้อความจากเสียงด้วย Google Speech Recognition และกำหนดค่าภาษาเป็นภาษาไทย
-  except sr.UnknownValueError:# ประมวลผลแล้วไม่รู้จักหรือเข้าใจเสียง
-        text = "no word"
-  return text
+  with sr.WavFile(audio) as source:
+    try:
+      audio = r.listen(source)
+      text = r.recognize_google(audio,language = "th-TH")
+      print("You said " + text) # แสดงข้อความจากเสียงด้วย Google Speech Recognition และกำหนดค่าภาษาเป็นภาษาไทย
+    except sr.UnknownValueError:# ประมวลผลแล้วไม่รู้จักหรือเข้าใจเสียง
+      text = "no word"
+    return text
 
 if __name__=="__main__":
     app.run()
